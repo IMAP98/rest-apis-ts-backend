@@ -16,7 +16,11 @@ const connectDB = async () => {
 
 connectDB();
 
+// NOTE: Axios instance
 const server = express();
+
+// NOTE: Read data form
+server.use(express.json());
 
 server.use('/api/products', router);
 
