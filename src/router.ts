@@ -9,7 +9,7 @@ router.get('/', getProducts);
 
 router.get('/:id', 
     // NOTE: Validations
-    param('id').isInt().withMessage('ID no válido'),
+    param('id').isInt().withMessage('Invalid ID'),
     handleInputErrors,
     getProductById
 );
@@ -31,27 +31,27 @@ router.post('/',
 router.put('/:id', 
         
     // NOTE: Validations
-    param('id').isInt().withMessage('ID no válido'),
+    param('id').isInt().withMessage('Invalid ID'),
     body('name')
                 .notEmpty().withMessage("The product name can't be empty"),
     body('price')
                 .isNumeric().withMessage("Invalid value")
                 .notEmpty().withMessage("The product price can't be empty")
-                .custom(value => value > 0).withMessage("The product price can't be negative"),
+                .custom(value => value > 0).withMessage("The product price can't be negative or 0"),
     body('availability')
                 .isBoolean().withMessage("Invalid value for availability"),
     handleInputErrors,
     updateProduct
 );
 
-router.patch('/:id ', 
-    param('id').isInt().withMessage('ID no válido'),
+router.patch('/:id', 
+    param('id').isInt().withMessage('Invalid ID'),
     handleInputErrors,
     updateAvailability
 );
 
 router.delete('/:id', 
-    param('id').isInt().withMessage('ID no válido'),
+    param('id').isInt().withMessage('Invalid ID'),
     handleInputErrors,
     deleteProduct
 );
